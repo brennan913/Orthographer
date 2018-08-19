@@ -18,7 +18,12 @@ public class Orthographer {
     private static File document = null;
     private static int printCount = 0;
     private static StringBuilder line;
-    private static StringBuilder 
+    private static StringBuilder modLog;
+    private static StringBuilder newLog;
+
+    private static String[] toArray;
+    private static String[] fromArray;
+    private static int bound;
    
     //prompt user for filename
     public static void prompt() {
@@ -55,129 +60,55 @@ public class Orthographer {
    private static boolean match(StringBuilder line, StringBuilder modLog, int j, String[] fromArray, int k) {
        boolean isMatch = true;
        for( int m=0; m<fromArray[k].length(); m++ ) {
-           if( line.charAt(j+m) != fromArray[k].charAt(m) || modLog.charAt(j+m) != '0')
+           if( line.charAt(j+m) != fromArray[k].charAt(m) || modLog.charAt(j+m) != '0') {
                 isMatch = false;
+                break;
+           }
        }
        return isMatch;
    }
+   // TODO descending QuickSort
+   /** 
+    *
+    */
+   // TODO importAlphabet
 
    /**
     * Replace method to convert each unmodified location to IPA
     */
-   public static void replace() {
-       for(int i=0;i<a.size();i++) {
-            StringBuilder line = new StringBuilder
+    public static void replace() {
+       
+        for(int i=0;i<a.size();i++) {
+            
+            line = new StringBuilder();
+            modLog = new StringBuilder( line.length() );
+            
+            //mark line as unmodified
+            for(int j=0;j<line.length();j++) {
+            modlog.setCharAt(j,'0');
+            }
+
+            for(int j=0;j<line.length();j++) {
+                for(int k=0;k<fromArray.length;k++) {
+                    if( match(line, modLog, j,fromArray, k) ) {
+                       
+                        bound = fromArray[k].length();
+                        line.replace( j, bound, toArray[k] );
+                        
+                        //update modification record 
+                        newLog = new StringBuilder();
+                        for (int m=0;m<bound;m++)
+                            newLog.append('1');
+                        modLog.replace( j, bound, newLog.toString() );
+
+                    }
+                }
+
+            }
+
        }
    }
-    //iterate through stored text and run find and replace
-    /*
-     * proof of concept of find and replace 
-    public static void replace() {
-        for(int i=0;i<a.size();i++) {
-            //System.out.println("Line: "+ i);            
-            StringBuilder line = new StringBuilder( a.get(i) );
-
-            for(int j=0;j<line.length();j++) { 
-                //System.out.println( "charAt("+ j + "): " + line.charAt(j) );
-                //replace "ŋ" with "ng"
-                if(line.charAt(j) == 'ŋ') {
-                    line.replace(j,j+1,"ng");
-        System.out.println("replaced \"ŋ\" with \"ng\"");
-
-                }
-                //replace "ɑ" with "a"
-                if(line.charAt(j) == 'ɑ') {
-                    line.replace(j,j+1,"a");
-        System.out.println("replaced \"ɑ\" with \"a\"");
-
-                }            
-                //replace "æ" with "aa"
-                if(line.charAt(j) == 'æ') {
-                    line.replace(j,j+1,"aa");
-        System.out.println("replaced \"æ\" with \"aa\"");
-                    
-                }                        
-                //replace "tʃ" with "ch"
-                if(line.charAt(j) == 't' 
-                   && line.charAt(j+1) == 'ʃ') {
-                    
-                    line.replace(j,j+2,"ch");
-        System.out.println("replaced \"tʃ\" with \"ch\"");
-                    
-                }   
-                //replace "t͡ʃ" with "ch"
-                //TODO combine with "t͡s" replacement
-                if( line.charAt(j) == 't'
-                   && line.charAt(j+1) == '͡'
-                   && line.charAt(j+2) == 'ʃ'){
-        System.out.println("replaced \"t͡ʃ\" with \"ch\"");
-                    
-                    line.replace(j,j+3,"ch");
-                }
-                //replace "ʃ" with "sh"
-                if(line.charAt(j) == 'ʃ') {
-                    line.replace(j,j+1,"sh");
-        System.out.println("replaced \"ʃ\" with \"sh\"");
-                    
-                }                        
-                //replace "-" with " "
-                if(line.charAt(j) == '-') {
-                    line.replace(j,j+1," ");
-        System.out.println("replaced \"-\" with \" \"");
-                    
-                }                        
-                //replace "ɖ" with "dr"
-                if(line.charAt(j) == 'ɖ') {
-                    line.replace(j,j+1,"dr");
-        System.out.println("replaced \"ɖ\" with \"dr\"");
-                    
-                }                        
-                //replace "ʈ" with "tr"
-                if(line.charAt(j) == 'ʈ') {
-                    line.replace(j,j+1,"tr");
-                }                        
-                //replace "dz" and "tz" with "ts"
-                if( (line.charAt(j) == 'd' 
-                   || line.charAt(j) == 't') 
-                   && line.charAt(j+1) == 'z') {
-                    
-                    line.replace(j,j+2,"ts");
-                    }               
-                // replace "t͡s" with "ts"
-                if( line.charAt(j) == 't'
-                  && line.charAt(j+1) == '͡'
-                  && line.charAt(j+2) == 's') {
-                    
-                    line.replace(j,j+3,"ts");
-                }
-                //replace "j" with "y"
-                if(line.charAt(j) == 'j') {
-                    line.replace(j,j+1,"y");
-                    }                        
-                //replace "dʒ" with "j"
-                if(line.charAt(j) == 'd'
-                   && line.charAt(j+1) == 'ʒ') {
-                   
-                    line.replace(j,j+2,"j");
-                    }             
-                //replace "d͡ʒ" with "j"
-                if(line.charAt(j) == 'd' 
-                   && line.charAt(j+1) == '͡' 
-                   && line.charAt(j+2) == 'ʒ') {
-                    
-                    line.replace(j,j+3,"j");
-                } 
-                //replace ʰ with h (this probably won't work)
-                if(line.charAt(j) == 'ʰ') {
-                    line.replace(j,j+1,"h");
-                    }                        
-            }
-            
-            a.set( i,line.toString() );
-            
-        }
-    }
-     */
+   
     //print the stored text in its current form
     public static void print() {
         printCount++;
