@@ -17,24 +17,26 @@ public class Alphabet{
     private String[] phonetic;
     private String[] practical;
     private String alphabetName;
+    private Scanner console;
 
     
     /**
      * Constructor
      */
-    public Alphabet() {
+    public Alphabet(String languageName) {
         
-        // prompt user for alphabet name
-        Scanner console = new Scanner(System.in);
+    /*    // prompt user for alphabet name
+        console = new Scanner(System.in);
         System.out.print("Please enter alphabet name: ");
         
         String fileName = console.nextLine();
-        console.close();
-        alphabetName = fileName;
+        //console.close(); */
+
+        alphabetName = languageName;
        
-        StringBuilder fileBuilder = new StringBuilder(fileName);
+        StringBuilder fileBuilder = new StringBuilder(languageName);
         fileBuilder = fileBuilder.append(".txt");
-        fileName = fileBuilder.toString();
+        String fileName = fileBuilder.toString();
         
         
         // read in alphabets contained in file
@@ -49,8 +51,8 @@ public class Alphabet{
             alphabetReader.close();
 
         } catch(FileNotFoundException e) {
-
-            System.err.print("File not found!");
+            Scanner console = new Scanner(System.in);
+            System.out.print("There's no morpheme list for that language, would you like to add one?");
             System.exit(-1);
 
         }
@@ -61,6 +63,11 @@ public class Alphabet{
      * Prints the two alphabets in a pair of columns
      */
     public void print() {
+        if(phonetic.length != practical.length ) {
+            System.out.println("Alphabets do not match! Could not print");
+            return;
+        }
+
         for(int i=0;i<phonetic.length;i++) {
             System.out.println(phonetic[i] + "\t" + practical[i]);
         }
@@ -90,7 +97,7 @@ public class Alphabet{
 
 
     public static final void main(String[] args) {
-        Alphabet language = new Alphabet();
+        Alphabet language = new Alphabet("seke");
         System.out.println(language.alphabetName);
         language.print();
     }
