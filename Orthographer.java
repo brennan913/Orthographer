@@ -1,9 +1,16 @@
-//TODO
-//Make it reversable ( toIPA() ) 
-//rename replace, think ( fromIPA() ) 
-//take language instructions as a parameter
-//come up with name Orthographer, IPA Converter
-//come up with conditionals to fix common formatting errors
+/**
+ * 
+ * @author Brennan Xavier McManus bm2530@columbia.edu
+ *  
+ * Orthographer takes a text file of any size and converts its contents
+ * from phonemic transcription in IPA to practical orthography written
+ * using exclusively characters from the Roman Alphabet.
+ * 
+ */
+//TODO come up with conditionals to fix common formatting errors
+//TODO  write new files instead of overwriting
+//TODO  GUI stuff
+
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.io.File;
@@ -16,12 +23,7 @@ public class Orthographer {
     private static ArrayList<String> a = new ArrayList<>();
     private static String fileName = null;
     private static File document = null;
-    private static Scanner console;
     private static int printCount = 0;
-    private static StringBuilder line;
-    private static StringBuilder modLog;
-    private static StringBuilder newLog;
-    private static String alphabetName;
     private static Alphabet language;
    
     /**
@@ -30,11 +32,11 @@ public class Orthographer {
      * the user to create them if the file is not found. 
      */
     public static void prompt() {
-        console = new Scanner(System.in);
+        Scanner console = new Scanner(System.in);
         System.out.print("Please enter file name: ");
         fileName = console.nextLine();
         System.out.print("Please enter alphabet name: ");
-        alphabetName = console.nextLine();
+        String alphabetName = console.nextLine();
         console.close();
         language = new Alphabet(alphabetName);
     }
@@ -124,6 +126,10 @@ public class Orthographer {
         
         DescendingSorts.descendingQuickSort(toArray, fromArray);
 
+        StringBuilder line;
+        StringBuilder modLog;
+        int bound;
+        StringBuilder newLog;
         //read each line
         for(int i=0;i<a.size();i++) {
             
@@ -137,7 +143,6 @@ public class Orthographer {
                 modLog.setCharAt(j,'0');
             }
 
-            int bound;
             for(int j=0;j<line.length();j++) {
                 for(int k=0;k<fromArray.length;k++) {
                     if( match(line, modLog, j, fromArray, k) ) {

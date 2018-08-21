@@ -17,7 +17,6 @@ public class Alphabet{
     private String[] phonetic;
     private String[] practical;
     private String alphabetName;
-    private Scanner console;
 
     
     /**
@@ -34,7 +33,8 @@ public class Alphabet{
 
         alphabetName = languageName;
        
-        StringBuilder fileBuilder = new StringBuilder(languageName);
+        StringBuilder fileBuilder = new StringBuilder("Languages/");
+        fileBuilder = fileBuilder.append(languageName);
         fileBuilder = fileBuilder.append(".txt");
         String fileName = fileBuilder.toString();
         
@@ -51,7 +51,8 @@ public class Alphabet{
             alphabetReader.close();
 
         } catch(FileNotFoundException e) {
-            Scanner console = new Scanner(System.in);
+            //Scanner console = new Scanner(System.in);
+            //TODO new morpheme list creation
             System.out.print("There's no morpheme list for that language, would you like to add one?");
             System.exit(-1);
 
@@ -97,7 +98,10 @@ public class Alphabet{
 
 
     public static final void main(String[] args) {
-        Alphabet language = new Alphabet("seke");
+        Scanner input = new Scanner(System.in);
+        System.out.print("Please enter language name: ");
+        String lang = input.nextLine();
+        Alphabet language = new Alphabet(lang);
         System.out.println(language.alphabetName);
         language.print();
     }
