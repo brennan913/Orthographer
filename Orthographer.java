@@ -199,6 +199,10 @@ public class Orthographer {
         prompt();
         scan();
         print();
+        //fromIPA();
+        print();
+        toIPA();
+        print();
         fromIPA();
         print();
         //write();
