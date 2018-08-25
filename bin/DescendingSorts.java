@@ -123,7 +123,7 @@ public class DescendingSorts {
             swap(s1, s2, i, right-1); 
 
             descendingQuickSort(s1, s2, left, i-1);
-            descendingQuickSort(s1, s2, i, right); 
+            descendingQuickSort(s1, s2, i+1, right); 
 
         
     }
