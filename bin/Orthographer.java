@@ -8,7 +8,7 @@
  * 
  */
 //TODO come up with conditionals to fix common formatting errors
-//TODO  write new files instead of overwriting
+//TODO  add options for writing new files and overwriting current file
 //TODO  GUI stuff
 
 import java.util.Scanner;
@@ -17,10 +17,9 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 
-
 public class Orthographer {
     
-    private static ArrayList<String> a = new ArrayList<>();
+    //private static ArrayList<String> a = new ArrayList<>();
     private static String fileName = null;
     private static File document = null;
     private static int printCount = 0;
@@ -46,18 +45,19 @@ public class Orthographer {
      * close input stream
      * @throws FileNotFoundException e
      */ 
-   public static void scan() {
-       try{ 
-           document = new File(fileName);
-           Scanner input = new Scanner(document);
+   public static ArrayList<String> scan(File file) {
+       
+       ArrayList<String> a = new ArrayList<>();
+       try{
+           Scanner input = new Scanner(file);
            while( input.hasNextLine() ) {
                a.add( input.nextLine() );
            }
            input.close();
-       } catch(FileNotFoundException e){
-           System.err.println("file not found!");
-           System.exit(-1);
-       }
+        } catch (FileNotFoundException e) {
+            System.err.print("File not found!");
+        }
+           return a; 
    } 
 
    /**
@@ -93,16 +93,16 @@ public class Orthographer {
     * toIPa calls replace(phonetic, practical)
     * converts text from phonetic IPA characters to system that uses the roman alphabet  
     */
-    public static void toIPA() {
-        replace( language.getPhonetic(), language.getPractical() );
+    public static void toIPA(ArrayList<String> a) {
+        replace( a, language.getPhonetic(), language.getPractical() );
     }
 
     /**
      * fromIPA calls replace(practical, phonetic)
      * converts text from roman alphabet to phonetic IPA characters
      */
-    public static void fromIPA() {
-        replace( language.getPractical(), language.getPhonetic() );
+    public static void fromIPA(ArrayList<String> a) {
+        replace( a,  language.getPractical(), language.getPhonetic() );
     }
 
     /**
@@ -122,7 +122,7 @@ public class Orthographer {
     * @param String[] toArray - array of morphemes the new document will be written in
     * @param String[] fromArray - array of morphemes the original text was written in 
     */
-    private static void replace(String[] toArray, String[] fromArray) {
+    private static void replace(ArrayList<String> a, String[] toArray, String[] fromArray) {
         
         DescendingSorts.descendingQuickSort(toArray, fromArray);
 
@@ -169,7 +169,7 @@ public class Orthographer {
      * print the stored text in its current form line by line
      * increments printCount
      */ 
-    public static void print() {
+    public static void print(ArrayList<String> a) {
         System.out.println("********Print "+ printCount++ + "********");
         for(int i=0;i<a.size();i++) {
                 System.out.println( a.get(i) );
@@ -180,7 +180,7 @@ public class Orthographer {
     //
     //open an output stream and write edited text to file
     //close output stream and end program
-    public static void write() {
+    public static void overwrite(ArrayList<String> a) {
         try{
             PrintWriter outputStream = new PrintWriter(document);
             for(int i=0;i<a.size();i++) {
@@ -196,7 +196,7 @@ public class Orthographer {
     
     //main method
     public static final void main(String[] args) {
-        prompt();
+        /*prompt();
         scan();
         print();
         //fromIPA();
@@ -205,7 +205,7 @@ public class Orthographer {
         print();
         fromIPA();
         print();
-        //write();
+        //Overwrite(); */
     }
     
     
