@@ -1,16 +1,25 @@
 # Orthographer 
 #### IPA to Practical Orthography Converter
-##
 Orthographer takes a text file (.txt) of any size and converts its contents from phonemic transcription in IPA to transcription in the relevant practical systems of writing, which typically make use of characters from the Roman alphabet. 
 
+#### Opening the Application
+Note: java must be downloaded for the program to run.
+
+To use Orthographer, open Orthographer.zip using any unarchiving software. This will create a folder called Orthographer. Open this folder and double click on Orthographer.jar, and the application will launch. 
+
+#### Adding Languages
 Orthographer can be used with any language, simply click on "Add Language", enter the language name and lists of morphemes in the appropriate fields in the new window, and save. 
 
+#### Opening Files
 To open a file, click on "Open File." The file name will appear on the top left. Clicking on a file name in the top left box will cause the contents of this file to be displayed in the main screen. 
 
+#### Selecting Languages
 To select the language the file is written in, click on the name of the language in box on the left side of the window. The morphemes in this language will show up in the table on the bottom left. 
 
+#### Converting Files
 To convert the document, click on "Convert Document" button on then bottom right. This process will use the currently selected language in the left side list of langauges. In the new window, a live preview of your selected document will display on the top. To preview how the document will appear after conversion, simply click on the button for the desired conversion. Clicking on "To IPA" will change all morphemes that match the practical morphemes listed in the language to their International Phonetic Alphabet equivalents. Clicking on "From IPA" will change all morphemes that match the IPA morphemes listed in the language to their practical orthography equivalents. Clicking on either will change the text in the file content preview, and will select your desired conversion. 
 
+#### Saving the Results
 To save the text displayed in the preview, click on either "Save to current Document," which will overwrite the original content of the document with the content shown in the preview, or click on "Save as new Document," which will save the text in the preview as a new .txt file.
 ## Sample
 This sample uses Seke, a language spoken in northern Nepal and included in the Orthographer languages list by default. The conversion is from IPA to practical orthography. 
