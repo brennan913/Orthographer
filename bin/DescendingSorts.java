@@ -1,3 +1,11 @@
+/**
+ * 
+ * @author Brennan Xavier McManus bm2530@columbia.edu
+ *  
+ * Descending Sorts contains various static implementations of sorting algorithms to order
+ * pairs of String arrays in descending order using String length as a comparator.
+ * 
+ */
 public class DescendingSorts {
    
     /** 
@@ -165,20 +173,5 @@ public class DescendingSorts {
             
         }
     }
-    /**
-     * Main method tests sorting algorithms using ReadAlphabet static methods
-     */
-
-    public static final void main(String[] args) {
-    Alphabet language = new Alphabet("seke");
-    language.print();
-    String[] toArray = language.getPractical();
-    String[] fromArray = language.getPhonetic();
-    //descendingSelectionSort(toArray, fromArray);
-    descendingQuickSort(toArray, fromArray);
-    //descendingInsertionSort(toArray, fromArray);
-    System.out.println("***************Sorted Alphabets***************");
-    language.print();
     
-    }
 }

@@ -3,13 +3,15 @@
  * @author Brennan Xavier McManus bm2530@columbia.edu
  *  
  * Orthographer takes a text file of any size and converts its contents
- * from phonemic transcription in IPA to practical orthography written
- * using exclusively characters from the Roman Alphabet.
+ * from phonemic transcription in IPA to a system of practical orthography
+ * usually written using characters from the Roman alphabet.
+ * 
+ * Depends on DescendingSorts.class
+ * 
+ * Contains static methods scan, replace, and write, used for reading in text files, 
+ * replacing their contents, and saving the resulting text respectively.
  * 
  */
-//TODO come up with conditionals to fix common formatting errors
-//TODO  add options for writing new files and overwriting current file
-//TODO  GUI stuff
 
 import java.util.Scanner;
 import java.util.ArrayList;
@@ -19,30 +21,13 @@ import java.io.PrintWriter;
 
 public class Orthographer {
     
-    //private static ArrayList<String> a = new ArrayList<>();
-    private static String fileName = null;
-    private static File document = null;
+    //records number of prints for debugging purposes
     private static int printCount = 0;
-    private static Alphabet language;
-   
-    /**
-     * prompts user for name of text file to be converted and name of language used for conversion
-     * creates Alphabet object, which accesses arrays of morpheme pairs if the file exits, or prompts 
-     * the user to create them if the file is not found. 
-     */
-    public static void prompt() {
-        Scanner console = new Scanner(System.in);
-        System.out.print("Please enter file name: ");
-        fileName = console.nextLine();
-        System.out.print("Please enter alphabet name: ");
-        String alphabetName = console.nextLine();
-        language = new Alphabet(alphabetName);
-        console.close();
-    }
 
     /**
      * scan in document and store in ArrayList
      * close input stream
+     * @param File file - text file to be read into arraylist
      * @throws FileNotFoundException e
      */ 
    public static ArrayList<String> scan(File file) {
@@ -61,7 +46,7 @@ public class Orthographer {
    } 
 
    /**
-    * Utility method to check if two morphemes match
+    * Utility method for replace() to check if two morphemes match
     * @param StringBuilder line - current line being read
     * @param Stringbuilder modLog - record of modification for current line 
     * @param int j - current location on line
@@ -89,24 +74,8 @@ public class Orthographer {
        return isMatch;
    }
 
-   /**
-    * toIPa calls replace(phonetic, practical)
-    * converts text from phonetic IPA characters to system that uses the roman alphabet  
-    */
-    public static void toIPA(ArrayList<String> a) {
-        replace( a, language.getPhonetic(), language.getPractical() );
-    }
-
     /**
-     * fromIPA calls replace(practical, phonetic)
-     * converts text from roman alphabet to phonetic IPA characters
-     */
-    public static void fromIPA(ArrayList<String> a) {
-        replace( a,  language.getPractical(), language.getPhonetic() );
-    }
-
-    /**
-     * Utility method to remove common diacritics
+     * Utility method for replace() to remove common diacritics
      * @param StringBuilder s the line of text to clean
      */
     private static void clean(StringBuilder s) {
@@ -119,10 +88,11 @@ public class Orthographer {
     }
    /**
     * Replace method to convert each unmodified morpheme between practical orthography and IPA
+    * @param ArrayList<String> a - arraylist lines of text to be replaced 
     * @param String[] toArray - array of morphemes the new document will be written in
     * @param String[] fromArray - array of morphemes the original text was written in 
     */
-    private static void replace(ArrayList<String> a, String[] toArray, String[] fromArray) {
+    public static void replace(ArrayList<String> a, String[] toArray, String[] fromArray) {
         
         DescendingSorts.descendingQuickSort(toArray, fromArray);
 
@@ -168,8 +138,9 @@ public class Orthographer {
      * Print
      * print the stored text in its current form line by line
      * increments printCount
+     * @param ArrayList<String> a stored text to print
      */ 
-    public static void print(ArrayList<String> a) {
+    private static void print(ArrayList<String> a) {
         System.out.println("********Print "+ printCount++ + "********");
         for(int i=0;i<a.size();i++) {
                 System.out.println( a.get(i) );
@@ -180,7 +151,7 @@ public class Orthographer {
     //
     //open an output stream and write edited text to file
     //close output stream and end program
-    public static void overwrite(ArrayList<String> a) {
+    public static void write(ArrayList<String> a, File document) {
         try{
             PrintWriter outputStream = new PrintWriter(document);
             for(int i=0;i<a.size();i++) {
@@ -194,7 +165,7 @@ public class Orthographer {
         }
     }
     
-    //main method
+    //main method for testing purposes
     public static final void main(String[] args) {
         /*prompt();
         scan();
@@ -205,7 +176,7 @@ public class Orthographer {
         print();
         fromIPA();
         print();
-        //Overwrite(); */
+        //write(); */
     }
     
     

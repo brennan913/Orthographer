@@ -1,3 +1,12 @@
+/**
+ * 
+ * @author Brennan Xavier McManus bm2530@columbia.edu
+ *  
+ * Encapsulates individual morpheme pairs 
+ * (eg "æ" and "aa" representing the same sound )
+ * used for populating javaFX TableView
+ * 
+ */
 import javafx.beans.property.SimpleStringProperty;
 
 public class Morpheme {
