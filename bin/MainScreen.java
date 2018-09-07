@@ -659,7 +659,8 @@ public class MainScreen extends Application {
 //Section 5: Stage Finalization and Display
 //************************************************************************************************        
         primaryStage.setScene(new Scene(root, 800, 500));
-        primaryStage.getIcons().add(new Image(MainScreen.class.getResourceAsStream("icon.png")));
+        Image icon = new Image(MainScreen.class.getResourceAsStream("icon.png"));
+        primaryStage.getIcons().add(icon);
         primaryStage.show();
 //************************************************************************************************        
     }
