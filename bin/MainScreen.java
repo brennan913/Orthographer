@@ -45,16 +45,21 @@ public class MainScreen extends Application {
      * @param ObservableList<File> fl list of language files
      */
     private static void loadLanguages(ObservableList<String> sl, ObservableList<File> fl){
-        File languagesDir = new File("Languages/");
-        File[] languages = languagesDir.listFiles();
+        try {
+            File languagesDir = new File("Languages/");
+            File[] languages = languagesDir.listFiles();
     
-        for(File f: languages) {
-            fl.add(f);
-            String languageName = f.getName().substring(0,f.getName().length()-4);
-            sl.add(languageName);
-        } 
-        sl.sort(null);
-        fl.sort(null);
+            for(File f: languages) {
+                fl.add(f);
+                String languageName = f.getName().substring(0,f.getName().length()-4);
+                sl.add(languageName);
+            } 
+            sl.sort(null);
+            fl.sort(null);
+        } catch (NullPointerException e) {
+            System.err.print("No Languages directory found!");
+            System.exit(-1);
+        }
     }
 
     /**
