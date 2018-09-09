@@ -3,7 +3,8 @@
 Orthographer takes a text file (.txt) of any size and converts its contents from phonemic transcription in IPA to transcription in the relevant practical systems of writing, which typically make use of characters from the Roman alphabet. 
 
 #### Opening the Application
-Note: java must be downloaded for the program to run.
+Note: Java must be downloaded for the program to run.
+Compiled using Java SE-10.
 
 To use Orthographer, open Orthographer.zip using any unarchiving software. This will create a folder called Orthographer. Open this folder and double click on Orthographer.jar, and the application will launch. 
 
