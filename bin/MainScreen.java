@@ -1,7 +1,6 @@
 /**
  * 
  * @author Brennan Xavier McManus bm2530@columbia.edu
- *  
  * 
  * Depends on Orthographer.class, DescendingSorts.class, Morpheme.class
  * 
@@ -224,6 +223,15 @@ public class MainScreen extends Application {
                     fileNames.add( file.getName() );
                     openFiles.add(file);
                     convertBtn.setDisable(false);
+                    
+                    if( filePreviewDisplay.getText().trim().equals("") ) { //automatically load first opened file
+                        ArrayList<String> inputText = Orthographer.scan(file); 
+                        loadText(filePreviewDisplay, inputText);
+                        currentText.clear();
+                        for(int i=0;i<inputText.size();i++) 
+                            currentText.add( inputText.get(i) );
+                    }
+
                 }
             }
         } );
