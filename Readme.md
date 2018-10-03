@@ -8,9 +8,10 @@ Compiled using Java SE-10.
 
 To use Orthographer, open Orthographer.zip using any unarchiving software. This will create a folder called Orthographer. Open this folder and double click on Orthographer.jar, and the application will launch. 
 
+![ScreenShot](./screenshots/MainScreen.png)
 #### Adding Languages
 Orthographer can be used with any language, simply click on "Add Language", enter the language name and lists of morphemes in the appropriate fields in the new window, and save. 
-
+![ScreenShot](./screenshots/AddLanguageScreen.png)
 #### Opening Files
 To open a file, click on "Open File." The file name will appear on the top left. Clicking on a file name in the top left box will cause the contents of this file to be displayed in the main screen. 
 
@@ -19,7 +20,7 @@ To select the language the file is written in, click on the name of the language
 
 #### Converting Files
 To convert the document, click on "Convert Document" button on then bottom right. This process will use the currently selected language in the left side list of langauges. In the new window, a live preview of your selected document will display on the top. To preview how the document will appear after conversion, simply click on the button for the desired conversion. Clicking on "To IPA" will change all morphemes that match the practical morphemes listed in the language to their International Phonetic Alphabet equivalents. Clicking on "From IPA" will change all morphemes that match the IPA morphemes listed in the language to their practical orthography equivalents. Clicking on either will change the text in the file content preview, and will select your desired conversion. 
-
+![ScreenShot](./screenshots/ConversionScreen.png)
 #### Saving the Results
 To save the text displayed in the preview, click on either "Save to current Document," which will overwrite the original content of the document with the content shown in the preview, or click on "Save as new Document," which will save the text in the preview as a new .txt file.
 ## Sample
