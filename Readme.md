@@ -1,6 +1,6 @@
 # Orthographer 
 #### IPA to Practical Orthography Converter
-Orthographer is a desktop application that takes text files (.txt) of any size and converts their contents between phonemic transcription in IPA and transcription in the relevant practical systems of writing, which typically make use of characters from the Roman alphabet. 
+Orthographer is a desktop application that takes text files (.txt) of any size and converts their contents between phonemic transcription in IPA and transcription in the relevant practical systems of writing, which typically make use of characters from the Roman alphabet. Download Othographer.zip from the distribution directory and try it out!
 
 #### Sample
 This sample uses Seke, a language spoken in northern Nepal and included in the Orthographer languages list by default. The conversion is from IPA to practical orthography. 
