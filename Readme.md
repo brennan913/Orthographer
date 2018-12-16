@@ -12,7 +12,7 @@ _nga tini chhuze druk ri ri zi talabili ngi ge chuze nis ri yin. hoze nga tayarl
 #### Opening the Application
 Note: Java must be downloaded for the program to run.
 Compiled using Java SE-10.
-Download Othographer.zip from the distribution directory
+Download Othographer.zip from the distribution directory.
 
 To use Orthographer, open Orthographer.zip using any unarchiving software. This will create a folder called Orthographer. Open this folder and double click on Orthographer.jar, and the application will launch. 
 
