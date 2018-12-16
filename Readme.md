@@ -18,7 +18,7 @@ To use Orthographer, open Orthographer.zip using any unarchiving software. This 
 
 ![ScreenShot](./screenshots/MainScreen.png)
 #### Adding Languages
-Orthographer can be used with any language, simply click on "Add Language", enter the language name and lists of morphemes in the appropriate fields in the new window, and save. 
+Orthographer can be used with any language: simply click on "Add Language", enter the language name and lists of morphemes in the appropriate fields in the new window, and save. 
 
 ![ScreenShot](./screenshots/AddLanguageScreen.png)
 #### Opening Files
