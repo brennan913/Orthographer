@@ -121,14 +121,8 @@ public class Orthographer {
 
             for (int j = 0; j < line.length(); j++) {
 
-                //
-                System.err.println(line.charAt(j));
-
                 for (int k = 0; k < fromArray.length; k++) {
                     if (match(line, modLog, j, fromArray, k)) {
-
-                        //
-                        System.err.println("Replacing " + fromArray[k] + " with " + toArray[k]);
 
                         bound = fromArray[k].length();
                         line.replace(j, j + bound, toArray[k]);
